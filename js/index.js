@@ -116,15 +116,21 @@ function renderButtons() {
   // Iteration 3: add/remove the class "active" of each `<button class="btn">`
 
 
-function renderPrice() {
-  document.querySelectorAll('.pep').forEach(onePep => {
-    if (state.pepperoni) {
-      onePep.style.visibility = 'visible';
-    } else {
-      onePep.style.visibility = 'hidden';
+  function renderPrice() {
+    // Iteration 4: change the HTML of `<aside class="panel price">`
+  
+    let totalPrice = 10
+    let $list = document.querySelector('aside.panel.price ul')
+    $list.innerHTML = ""
+  
+    for (let items in ingredients) {
+      if (state[items]) {
+        totalPrice += ingredients[items].price
+        $list.innerHTML += `<li>$${ingredients[items].price} ${ingredients[items].name.toLowerCase()}</li>`
+      }
     }
-  });
-};
+    document.querySelector('aside.panel.price strong').innerHTML = "$" + totalPrice
+  }
   // Iteration 4: change the HTML of `<aside class="panel price">`
 
 
